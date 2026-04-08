@@ -1,43 +1,27 @@
 /**
- * LemonSqueezy Webhook Handler
+ * Gumroad Ping (Webhook) Handler
  *
- * Flow: User pays → LemonSqueezy sends POST here → we generate a license key → send via email
+ * Flow: User pays on Gumroad → Gumroad sends POST here → we generate a license key → return it
+ *
+ * Gumroad sends a POST with form-encoded data including:
+ *   - email, product_permalink, sale_timestamp, etc.
  *
  * Environment variables needed (set in Vercel):
- *   LEMON_WEBHOOK_SECRET - Webhook signing secret from LemonSqueezy
- *   LICENSE_PRIVATE_KEY  - Ed25519 private key (PEM format) for signing license keys
+ *   LICENSE_PRIVATE_KEY - Ed25519 private key (PEM format) for signing license keys
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac } from "crypto";
 import { createPrivateKey, sign } from "crypto";
 
-// Variant ID → tier/seats mapping
-const VARIANT_MAP: Record<string, { tier: string; seats?: number }> = {
-  "1504341": { tier: "pro" },           // Pro Monthly
-  "1504358": { tier: "pro" },           // Pro Annual
-  "1504360": { tier: "pro" },           // Pro Lifetime
-  "1504362": { tier: "lab", seats: 5 }, // Lab 5
-  "1504364": { tier: "lab", seats: 10 },// Lab 10
-  "1504377": { tier: "lab", seats: 20 },// Lab 20
+// Product permalink → tier/seats mapping
+const PRODUCT_MAP: Record<string, { tier: string; seats?: number; days: number }> = {
+  "emgyg":  { tier: "pro", days: 35 },        // Pro Monthly (35 day grace)
+  "ylkzia": { tier: "pro", days: 370 },        // Pro Annual
+  "muguh":  { tier: "pro", days: 36500 },       // Pro Lifetime (100 years)
+  "pajmvg": { tier: "lab", seats: 5, days: 370 },  // Lab 5
+  "tqqemu": { tier: "lab", seats: 10, days: 370 }, // Lab 10
+  "ugubfs": { tier: "lab", seats: 20, days: 370 }, // Lab 20
 };
-
-// Variant ID → expiry duration
-const VARIANT_DURATION: Record<string, number> = {
-  "1504341": 35,      // Monthly: 35 days (5 day grace)
-  "1504358": 370,     // Annual: 370 days
-  "1504360": 36500,   // Lifetime: 100 years
-  "1504362": 370,     // Lab 5: annual
-  "1504364": 370,     // Lab 10: annual
-  "1504377": 370,     // Lab 20: annual
-};
-
-function verifyWebhookSignature(body: string, signature: string, secret: string): boolean {
-  const hmac = createHmac("sha256", secret);
-  hmac.update(body);
-  const digest = hmac.digest("hex");
-  return digest === signature;
-}
 
 function generateLicenseKey(
   email: string,
@@ -81,61 +65,51 @@ function randomId(len: number): string {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.text();
-    const signature = request.headers.get("x-signature") ?? "";
-    const secret = process.env.LEMON_WEBHOOK_SECRET ?? "";
+    // Gumroad sends form-encoded data
+    const formData = await request.formData();
+    const email = formData.get("email") as string;
+    const permalink = formData.get("product_permalink") as string;
+    const fullName = formData.get("full_name") as string ?? "";
 
-    // Verify webhook signature
-    if (!verifyWebhookSignature(body, signature, secret)) {
-      console.error("Webhook signature verification failed");
-      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-    }
-
-    const data = JSON.parse(body);
-    const eventName = data.meta?.event_name;
-
-    // Only handle order_created
-    if (eventName !== "order_created") {
-      return NextResponse.json({ ok: true, skipped: eventName });
-    }
-
-    const email = data.data?.attributes?.user_email;
-    const userName = data.data?.attributes?.user_name ?? "";
-    const variantId = String(data.data?.attributes?.first_order_item?.variant_id ?? "");
-
-    if (!email || !variantId) {
-      console.error("Missing email or variant_id", { email, variantId });
+    if (!email || !permalink) {
+      console.error("Missing email or permalink", { email, permalink });
       return NextResponse.json({ error: "Missing data" }, { status: 400 });
     }
 
-    const tierInfo = VARIANT_MAP[variantId];
-    if (!tierInfo) {
-      console.error("Unknown variant:", variantId);
-      return NextResponse.json({ error: "Unknown product variant" }, { status: 400 });
+    const productInfo = PRODUCT_MAP[permalink];
+    if (!productInfo) {
+      console.error("Unknown product permalink:", permalink);
+      return NextResponse.json({ error: "Unknown product" }, { status: 400 });
     }
 
-    const durationDays = VARIANT_DURATION[variantId] ?? 370;
-    const labName = tierInfo.tier === "lab" ? (userName || "Lab") : undefined;
+    const labName = productInfo.tier === "lab" ? (fullName || "Lab") : undefined;
 
     // Generate license key
-    const licenseKey = generateLicenseKey(email, tierInfo.tier, tierInfo.seats, labName, durationDays);
-
-    // Send license key via LemonSqueezy API (update order notes)
-    // For now, log it — the key will be delivered via the order confirmation email template
-    console.log(`License generated for ${email}: tier=${tierInfo.tier}, seats=${tierInfo.seats ?? "N/A"}`);
-
-    // Store license key — in production, you might want to save to a database
-    // For MVP, we rely on LemonSqueezy's order custom data or email delivery
-
-    // TODO: Send email with license key via a transactional email service
-    // For now, return the key in the response (LemonSqueezy stores webhook responses)
-    return NextResponse.json({
-      ok: true,
+    const licenseKey = generateLicenseKey(
       email,
-      tier: tierInfo.tier,
-      seats: tierInfo.seats,
-      licenseKey,
-    });
+      productInfo.tier,
+      productInfo.seats,
+      labName,
+      productInfo.days,
+    );
+
+    console.log(`License generated for ${email}: tier=${productInfo.tier}, seats=${productInfo.seats ?? "N/A"}`);
+
+    // Return the license key — Gumroad will show this on the post-purchase page
+    // and include it in the receipt email if we return it as content
+    return new NextResponse(
+      JSON.stringify({
+        ok: true,
+        email,
+        tier: productInfo.tier,
+        seats: productInfo.seats,
+        license_key: licenseKey,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
   } catch (err: any) {
     console.error("Webhook error:", err);

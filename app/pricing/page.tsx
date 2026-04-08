@@ -53,7 +53,7 @@ export default function Pricing() {
             <li style={highlightLi}>Mobile server access</li>
             <li style={highlightLi}>MCP integration</li>
           </ul>
-          <a href="https://synvala-eln.lemonsqueezy.com" style={btnPrimary}>Get Pro</a>
+          <a href="https://9077962358592.gumroad.com" style={btnPrimary}>Get Pro</a>
         </div>
 
         {/* Lab */}
@@ -72,7 +72,7 @@ export default function Pricing() {
             <li>Lab name on license</li>
             <li>Volume discount</li>
           </ul>
-          <a href="https://synvala-eln.lemonsqueezy.com" style={btnSecondary}>Get Lab</a>
+          <a href="https://9077962358592.gumroad.com" style={btnSecondary}>Get Lab</a>
         </div>
       </div>
 
