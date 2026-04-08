@@ -12,7 +12,7 @@ export default function Download() {
           <div style={{ fontSize: 36 }}>🪟</div>
           <h3>Windows</h3>
           <p>Windows 10/11 · x64 · ~40 MB</p>
-          <a href="https://github.com/Aslan0809610/synvala-web/releases/download/v0.2.0/Synvala_portable.zip" className="btn-primary">
+          <a href="https://github.com/Aslan0809610/synvala-web/releases/download/v1.0.0/Synvala_portable.zip" className="btn-primary">
             Download .zip
           </a>
           <p style={{ marginTop: 10, fontSize: 12, color: "var(--text-dim)" }}>

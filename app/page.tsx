@@ -5,7 +5,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="hero">
-        <div className="hero-badge">v0.2.0 — Now with AI Assistant & MCP</div>
+        <div className="hero-badge">v1.0.0 — AI Assistant, MCP, SI Export & more</div>
         <h1>
           The lab notebook<br />
           <em>organic chemists</em> deserve

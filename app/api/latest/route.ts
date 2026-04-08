@@ -8,10 +8,10 @@
 import { NextResponse } from "next/server";
 
 const LATEST = {
-  version: "0.2.0",
+  version: "1.0.0",
   downloadUrl: "https://www.synvala.com/download",
-  releaseNotes: "Initial public release with Free/Pro/Lab licensing.",
-  date: "2026-04-08",
+  releaseNotes: "v1.0.0 — First stable release. Multistep yield fix, bilingual help manual.",
+  date: "2026-04-09",
 };
 
 export async function GET() {
