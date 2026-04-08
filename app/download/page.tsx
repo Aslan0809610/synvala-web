@@ -16,7 +16,7 @@ export default function Download() {
         <div style={{ fontSize: 36, marginBottom: 8 }}>🪟</div>
         <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 8 }}>Windows</h3>
         <p style={{ color: "#999", fontSize: 14, marginBottom: 16 }}>Windows 10/11 &middot; x64 &middot; ~40 MB</p>
-        <a href="https://github.com/user/synvala/releases/latest/download/Synvala_portable.zip" style={{
+        <a href="https://github.com/Aslan0809610/synvala-web/releases/download/v0.2.0/Synvala_portable.zip" style={{
           display: "inline-block", padding: "12px 32px", background: "#f5c518", color: "#000",
           borderRadius: 8, fontWeight: 600, fontSize: 15, textDecoration: "none",
         }}>
