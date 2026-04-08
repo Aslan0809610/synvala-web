@@ -4,7 +4,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Synvala — Desktop Lab Notebook for Organic Chemistry",
   description: "Plan reactions, screen conditions, track substrate scope, and export publication-ready SI. A powerful desktop app built for organic chemists.",
-  keywords: "lab notebook, organic chemistry, ELN, electronic lab notebook, SI export, substrate scope, reaction screening",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/pricing">Pricing</a>
             <a href="/download">Download</a>
             <a href="/activate">Activate License</a>
-            <a href="https://github.com/Aslan0809610/synvala-web">GitHub</a>
           </div>
           <p>&copy; {new Date().getFullYear()} Synvala. Built for organic chemists.</p>
         </footer>

@@ -3,40 +3,114 @@ import ImageCarousel from "./components/ImageCarousel";
 export default function Home() {
   return (
     <main>
-      {/* Hero */}
-      <section className="hero">
-        <div className="hero-badge">v1.0.0 — AI Assistant, MCP, SI Export & more</div>
-        <h1>
-          The lab notebook<br />
-          <em>organic chemists</em> deserve
-        </h1>
-        <p>
-          Plan reactions, screen conditions, track substrate scope, and export publication-ready SI — all in one desktop app.
+      {/* ===== Hero (Apple-style dark) ===== */}
+      <section className="hero-dark">
+        <p className="overline">Synvala</p>
+        <h1>The lab notebook for organic chemistry.</h1>
+        <p className="subtitle">
+          Plan reactions. Screen conditions. Export publication-ready SI.
+          All in one desktop app — your data never leaves your computer.
         </p>
         <div className="hero-actions">
-          <a href="/download" className="btn-primary">Download Free</a>
-          <a href="/pricing" className="btn-outline">View Pricing</a>
+          <a href="/download" className="btn-hero primary">Download Free</a>
+          <a href="/pricing" className="btn-hero outline">See Pricing</a>
         </div>
         <p className="hero-note">
-          Windows & macOS · No account required · Your data stays local
+          Windows & macOS · No account · No cloud · 100% offline
         </p>
       </section>
 
-      {/* Screenshots */}
-      <section className="demo-section">
-        <ImageCarousel />
+      {/* ===== Product Screenshot ===== */}
+      <section className="showcase">
+        <div className="showcase-img-wrap">
+          <ImageCarousel />
+        </div>
       </section>
 
-      {/* Features */}
-      <section className="section">
-        <h2 className="section-title">Everything you need, nothing you don't</h2>
-        <p className="section-subtitle">
-          Built specifically for organic chemistry workflows
+      {/* ===== Stats ===== */}
+      <div className="stats-bar">
+        <div className="stat">
+          <div className="stat-num">4</div>
+          <div className="stat-label">Experiment Types</div>
+        </div>
+        <div className="stat">
+          <div className="stat-num">5</div>
+          <div className="stat-label">Languages</div>
+        </div>
+        <div className="stat">
+          <div className="stat-num">0</div>
+          <div className="stat-label">Cloud Dependencies</div>
+        </div>
+        <div className="stat">
+          <div className="stat-num">&infin;</div>
+          <div className="stat-label">Experiments (Free)</div>
+        </div>
+      </div>
+
+      {/* ===== Feature: Reaction Setup ===== */}
+      <div className="feature-row">
+        <div className="feature-text">
+          <p className="overline">Reaction Setup</p>
+          <h3>Every reagent, calculated.</h3>
+          <p>
+            Search PubChem by name. Draw structures with Ketcher.
+            Set one reference and watch every mass, volume, and equivalent
+            auto-calculate across your entire reaction.
+          </p>
+        </div>
+        <div className="feature-visual">
+          <img src="/screenshot1.png" alt="Reaction setup with PubChem and structure drawing" />
+        </div>
+      </div>
+
+      {/* ===== Feature: Procedure ===== */}
+      <div className="feature-row reverse">
+        <div className="feature-text">
+          <p className="overline">Procedure</p>
+          <h3>From scheme to write-up.</h3>
+          <p>
+            A reaction scheme is generated automatically from your reagents.
+            Record step-by-step procedures with time, temperature, and observations.
+            Everything flows into your PDF and SI export.
+          </p>
+        </div>
+        <div className="feature-visual">
+          <img src="/screenshot2.png" alt="Reaction scheme and experimental procedure" />
+        </div>
+      </div>
+
+      {/* ===== 4 Experiment Types ===== */}
+      <section className="exp-section">
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <p style={{ fontSize: 14, fontWeight: 600, color: "var(--accent)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Four Experiment Types</p>
+          <h2 style={{ fontSize: 48, fontWeight: 700, letterSpacing: -1.5, lineHeight: 1.1 }}>
+            One app for every workflow.
+          </h2>
+        </div>
+        <div className="exp-grid-4">
+          {expTypes.map((e, i) => (
+            <div key={i} className="exp-card-v2">
+              <div className="exp-icon">{e.icon}</div>
+              <h3>{e.title}</h3>
+              <p>{e.desc}</p>
+              {e.pro && <span className="badge-pro-v2">PRO</span>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== More Features (light section) ===== */}
+      <section className="section-light">
+        <p className="overline">And everything else</p>
+        <h2>Built for real lab work.</h2>
+        <p className="section-desc">
+          Not another generic note-taking app. Every feature was designed
+          with organic chemistry workflows in mind.
         </p>
-        <div className="feature-grid">
+        <div className="exp-grid-4" style={{ maxWidth: 1100, margin: "0 auto" }}>
           {features.map((f, i) => (
-            <div key={i} className="feature-card">
-              <div className="feature-icon">{f.icon}</div>
+            <div key={i} className="exp-card-v2">
+              <div className="exp-icon">{f.icon}</div>
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
             </div>
@@ -44,72 +118,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experiment Types */}
-      <section className="section">
-        <h2 className="section-title">4 experiment types</h2>
-        <p className="section-subtitle">
-          Each designed for a specific organic chemistry workflow
-        </p>
-        <div className="exp-grid">
-          {expTypes.map((e, i) => (
-            <div key={i} className="exp-card">
-              <div className="feature-icon">{e.icon}</div>
-              <h3>{e.title}</h3>
-              <p>{e.desc}</p>
-              {e.pro && <span className="badge-pro">PRO</span>}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="section">
-        <h2 className="section-title">Get started in 30 seconds</h2>
-        <p className="section-subtitle">No installation, no account, no setup</p>
-        <div className="feature-grid">
-          <div className="feature-card">
-            <div className="feature-icon">1</div>
-            <h3>Download & unzip</h3>
-            <p>One portable zip file. Extract and double-click to launch.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">2</div>
-            <h3>Create an experiment</h3>
-            <p>Choose your experiment type, add reagents with PubChem lookup, set conditions.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">3</div>
-            <h3>Export & publish</h3>
-            <p>Generate PDF reports, SI text, or Word documents ready for submission.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta">
-        <h2>Start recording experiments today</h2>
-        <p>Free forever for single-step synthesis. Upgrade when you're ready to publish.</p>
-        <a href="/download" className="btn-primary">Download Synvala</a>
+      {/* ===== CTA (dark) ===== */}
+      <section className="cta-dark">
+        <h2>Start recording experiments today.</h2>
+        <p>Free forever for synthesis. Upgrade when you're ready to publish.</p>
+        <a href="/download" className="btn-hero primary">Download Synvala</a>
       </section>
     </main>
   );
 }
 
-const features = [
-  { icon: "⚗️", title: "Reaction Setup", desc: "PubChem lookup, Ketcher structure drawing, auto-calculate equivalents, masses, and volumes." },
-  { icon: "📊", title: "Methodology Screening", desc: "Compare conditions side-by-side. Track yields, selectivity, and find optimal conditions." },
-  { icon: "🎯", title: "SI Export", desc: "Generate publication-ready Supporting Information as formatted text or Word documents." },
-  { icon: "🤖", title: "AI Assistant", desc: "Built-in chat with Claude, Ollama, Google AI, or OpenAI. Plan experiments by voice or text." },
-  { icon: "📓", title: "Markdown Notebook", desc: "Obsidian-compatible notes with [[links]], #tags, templates, and backlinks." },
-  { icon: "📱", title: "Mobile Access", desc: "Access experiments from any device on your network. No cloud required." },
-  { icon: "🔬", title: "Spectra Tools", desc: "Import NMR from MNova, view JCAMP spectra, record IR, HRMS, and GC-MS data." },
-  { icon: "🔒", title: "Local & Private", desc: "SQLite database on your machine. No account, no cloud, no tracking." },
-  { icon: "🌍", title: "Multilingual", desc: "中文, English, 日本語, Deutsch, Français. Five themes to choose from." },
+const expTypes = [
+  { icon: "🧪", title: "Synthesis", desc: "Single-reaction experiments with full reagent setup, procedures, results, and spectra.", pro: false },
+  { icon: "📊", title: "Screening", desc: "Multi-condition optimization. Compare catalysts, ligands, solvents side-by-side.", pro: true },
+  { icon: "🔗", title: "Multistep", desc: "Multi-step routes with automatic product carry-over between steps.", pro: true },
+  { icon: "🎯", title: "Substrate Scope", desc: "Full characterization + SI export as formatted text or Word document.", pro: true },
 ];
 
-const expTypes = [
-  { icon: "🧪", title: "General Synthesis", desc: "Single-reaction experiments with full reagent setup, procedure steps, results, and spectra.", pro: false },
-  { icon: "📊", title: "Methodology Screening", desc: "Multi-condition optimization table. Compare catalysts, ligands, solvents, temperatures.", pro: true },
-  { icon: "🔗", title: "Multistep Synthesis", desc: "Multi-step routes with automatic product carry-over between steps.", pro: true },
-  { icon: "🎯", title: "Substrate Scope", desc: "Full characterization with NMR, IR, HRMS, chiral HPLC. Export SI text and .docx.", pro: true },
+const features = [
+  { icon: "🤖", title: "AI Assistant", desc: "Chat with Claude, Ollama, Google AI. Plan experiments by voice or text." },
+  { icon: "📓", title: "Notebook", desc: "Obsidian-compatible Markdown notes with [[links]], #tags, and templates." },
+  { icon: "🔬", title: "Spectra", desc: "NMR, IR, HRMS, GC-MS. Import from MNova. Interactive JCAMP viewer." },
+  { icon: "📱", title: "Mobile Access", desc: "Access experiments from any device on your network. No cloud." },
+  { icon: "📄", title: "PDF Export", desc: "Publication-quality PDF with reaction schemes, tables, and spectra." },
+  { icon: "🔒", title: "Local & Private", desc: "SQLite on your machine. No account. No tracking. No data leaves." },
+  { icon: "🌍", title: "5 Languages", desc: "中文, English, 日本語, Deutsch, Français. Five beautiful themes." },
+  { icon: "⚡", title: "MCP Server", desc: "Let Claude Desktop read your experiments and notes directly." },
 ];
