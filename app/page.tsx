@@ -1,3 +1,5 @@
+import ImageCarousel from "./components/ImageCarousel";
+
 export default function Home() {
   return (
     <main>
@@ -20,14 +22,9 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Demo GIF */}
+      {/* Screenshots */}
       <section className="demo-section">
-        <div className="demo-container">
-          <img src="/demo.gif" alt="Synvala demo — reaction setup, screening table, SI export" />
-          <div className="demo-caption">
-            Set up reactions, screen conditions, and export publication-ready SI — all in one app
-          </div>
-        </div>
+        <ImageCarousel />
       </section>
 
       {/* Features */}
