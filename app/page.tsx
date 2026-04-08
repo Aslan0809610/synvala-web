@@ -20,6 +20,16 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Demo GIF */}
+      <section className="demo-section">
+        <div className="demo-container">
+          <img src="/demo.gif" alt="Synvala demo — reaction setup, screening table, SI export" />
+          <div className="demo-caption">
+            Set up reactions, screen conditions, and export publication-ready SI — all in one app
+          </div>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="section">
         <h2 className="section-title">Everything you need, nothing you don't</h2>
