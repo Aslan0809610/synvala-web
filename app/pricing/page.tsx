@@ -53,7 +53,11 @@ export default function Pricing() {
             <li style={highlightLi}>Mobile server access</li>
             <li style={highlightLi}>MCP integration</li>
           </ul>
-          <a href="https://9077962358592.gumroad.com" style={btnPrimary}>Get Pro</a>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <a href="https://9077962358592.gumroad.com/l/ylkzia" style={btnPrimary}>Get Pro Annual — $29/yr</a>
+            <a href="https://9077962358592.gumroad.com/l/emgyg" style={{ ...btnSecondary, fontSize: 12, padding: "8px 16px" }}>Monthly $3/mo</a>
+            <a href="https://9077962358592.gumroad.com/l/muguh" style={{ ...btnSecondary, fontSize: 12, padding: "8px 16px" }}>Lifetime $79</a>
+          </div>
         </div>
 
         {/* Lab */}
@@ -72,7 +76,11 @@ export default function Pricing() {
             <li>Lab name on license</li>
             <li>Volume discount</li>
           </ul>
-          <a href="https://9077962358592.gumroad.com" style={btnSecondary}>Get Lab</a>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <a href="https://9077962358592.gumroad.com/l/pajmvg" style={btnSecondary}>Lab 5 — $99/yr</a>
+            <a href="https://9077962358592.gumroad.com/l/tqqemu" style={{ ...btnSecondary, fontSize: 12, padding: "8px 16px" }}>Lab 10 — $169/yr</a>
+            <a href="https://9077962358592.gumroad.com/l/ugubfs" style={{ ...btnSecondary, fontSize: 12, padding: "8px 16px" }}>Lab 20 — $299/yr</a>
+          </div>
         </div>
       </div>
 
