@@ -47,37 +47,59 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ===== Feature: Reaction Setup ===== */}
-      <div className="feature-row">
-        <div className="feature-text">
-          <p className="overline">Reaction Setup</p>
-          <h3>Every reagent, calculated.</h3>
-          <p>
-            Search PubChem by name. Draw structures with Ketcher.
-            Set one reference and watch every mass, volume, and equivalent
-            auto-calculate across your entire reaction.
-          </p>
+      {/* ===== Feature Highlights ===== */}
+      <section className="features-showcase">
+        <div className="features-showcase-header">
+          <p className="overline">What You Can Do</p>
+          <h2>Every tool a chemist needs.</h2>
         </div>
-        <div className="feature-visual">
-          <img src="/screenshot1.png" alt="Reaction setup with PubChem and structure drawing" />
-        </div>
-      </div>
 
-      {/* ===== Feature: Procedure ===== */}
-      <div className="feature-row reverse">
-        <div className="feature-text">
-          <p className="overline">Procedure</p>
-          <h3>From scheme to write-up.</h3>
-          <p>
-            A reaction scheme is generated automatically from your reagents.
-            Record step-by-step procedures with time, temperature, and observations.
-            Everything flows into your PDF and SI export.
-          </p>
+        <div className="fs-row">
+          <div className="fs-card fs-card-wide">
+            <img src="/screenshot1.png" alt="Multistep synthesis with structure drawing" />
+            <div className="fs-card-overlay">
+              <span className="fs-tag">Reaction Setup</span>
+              <h3>Every reagent, calculated.</h3>
+              <p>Search PubChem, draw structures with Ketcher, set one reference — every mass, volume, and equivalent auto-calculates.</p>
+            </div>
+          </div>
+          <div className="fs-card">
+            <img src="/gallery-database.png" alt="Chemical database" />
+            <div className="fs-card-overlay">
+              <span className="fs-tag">Chemical Database</span>
+              <h3>Your compound library.</h3>
+              <p>Structure cards, tag filtering, storage locations, and one-click PubChem import.</p>
+            </div>
+          </div>
         </div>
-        <div className="feature-visual">
-          <img src="/screenshot2.png" alt="Reaction scheme and experimental procedure" />
+
+        <div className="fs-row fs-row-3">
+          <div className="fs-card">
+            <img src="/gallery-reaction.png" alt="Reaction scheme and procedure" />
+            <div className="fs-card-overlay">
+              <span className="fs-tag">Procedure</span>
+              <h3>Scheme to write-up.</h3>
+              <p>Auto-generated reaction scheme with step-by-step procedure recording.</p>
+            </div>
+          </div>
+          <div className="fs-card">
+            <img src="/screenshot2.png" alt="PDF export" />
+            <div className="fs-card-overlay">
+              <span className="fs-tag">PDF Export</span>
+              <h3>Publication ready.</h3>
+              <p>Reaction schemes, reagent tables, procedures, and spectra — all in one PDF.</p>
+            </div>
+          </div>
+          <div className="fs-card">
+            <img src="/gallery-notebook.png" alt="Markdown notebook" />
+            <div className="fs-card-overlay">
+              <span className="fs-tag">Notebook</span>
+              <h3>Obsidian-compatible.</h3>
+              <p>Markdown notes with [[experiment links]], live preview, and embedded data cards.</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* ===== 4 Experiment Types ===== */}
       <section className="exp-section">
