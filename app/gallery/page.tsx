@@ -30,10 +30,10 @@ export default function GalleryPage() {
         </p>
       </section>
 
-      {/* Demo GIF */}
+      {/* Demo Video */}
       <section className="gallery-demo-section">
         <div className="gallery-demo-wrap">
-          <img src="/gallery-demo.gif" alt="Synvala demo recording" />
+          <video src="/gallery-demo.mp4" autoPlay loop muted playsInline controls />
         </div>
         <p className="gallery-demo-caption">
           Quick walkthrough — reaction setup, PubChem search, structure drawing, and auto-calculation

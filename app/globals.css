@@ -609,7 +609,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--border);
   box-shadow: 0 8px 40px rgba(0,0,0,0.08);
 }
-.gallery-demo-wrap img { width: 100%; display: block; }
+.gallery-demo-wrap img, .gallery-demo-wrap video { width: 100%; display: block; }
 .gallery-demo-caption {
   font-size: 14px; color: var(--text-muted); margin-top: 16px;
 }
