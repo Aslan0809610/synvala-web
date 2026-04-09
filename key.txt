@@ -1,0 +1,2 @@
+cd D:\synvala-web
+node scripts/keygen-ui.mjs --key-file "C:\Users\jjj37\.claude\license_private.pem"

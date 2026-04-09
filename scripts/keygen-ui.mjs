@@ -321,8 +321,8 @@ const server = createServer(async (req, res) => {
 
 server.listen(PORT, "127.0.0.1", () => {
   console.log(`\n  Synvala Keygen UI → http://localhost:${PORT}\n`);
-  // Try to open browser
-  const { exec } = await import("child_process");
-  const cmd = process.platform === "win32" ? "start" : process.platform === "darwin" ? "open" : "xdg-open";
-  exec(`${cmd} http://localhost:${PORT}`);
+  import("child_process").then(({ exec }) => {
+    const cmd = process.platform === "win32" ? "start" : process.platform === "darwin" ? "open" : "xdg-open";
+    exec(`${cmd} http://localhost:${PORT}`);
+  });
 });

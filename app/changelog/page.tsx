@@ -30,6 +30,23 @@ export default function ChangelogPage() {
 
 const releases = [
   {
+    version: "v1.0.2",
+    date: "2026-04-09",
+    title: "SI Export System + Spectra Management",
+    tag: "minor",
+    changes: [
+      "SI journal format presets (Generic / ACS-JACS / Wiley-Angew / RSC)",
+      "Auto-generate SI Procedure for synthesis & multistep experiments",
+      "Screening conditions table export (.txt / .docx) for SI",
+      "Spectra file management — images, JDX, MNova files stored as real files",
+      "Substrate scope NMR: link to MNova imports + interactive JCAMP viewer",
+      "HPLC chromatogram images (rac / chiral / custom) in selectivity section",
+      "Screening table columns resizable by dragging",
+      "Full i18n for all SI components (zh-TW, en, ja, de, fr)",
+      "Fixed multistep experiments not loading on mobile",
+    ],
+  },
+  {
     version: "v1.0.1",
     date: "2026-04-08",
     title: "Bug Fix",
