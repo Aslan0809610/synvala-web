@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <a href="/" className="nav-logo">Synvala</a>
           <div className="nav-links">
             <a href="/docs" className="nav-link">Docs</a>
+            <a href="/gallery" className="nav-link">Gallery</a>
             <a href="/compare" className="nav-link">Compare</a>
             <a href="/pricing" className="nav-link">Pricing</a>
             <a href="/roadmap" className="nav-link">Roadmap</a>
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="footer">
           <div className="footer-links">
             <a href="/docs">Docs</a>
+            <a href="/gallery">Gallery</a>
             <a href="/compare">Compare</a>
             <a href="/pricing">Pricing</a>
             <a href="/roadmap">Roadmap</a>

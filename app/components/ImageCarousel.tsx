@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 
 const slides = [
-  { src: "/screenshot1.png", caption: "Reaction Setup — PubChem lookup, structure drawing, auto-calculated equivalents" },
-  { src: "/screenshot2.png", caption: "Procedure — Auto-generated reaction scheme with step-by-step records" },
+  { src: "/gallery-reaction.png", caption: "Reaction Setup — Structure drawing, auto-calculated equivalents, and step-by-step procedure" },
+  { src: "/gallery-database.png", caption: "Chemical Database — Structure cards with tag filtering and PubChem integration" },
+  { src: "/gallery-notebook.png", caption: "Notebook — Markdown editing with live preview, experiment embeds, and [[links]]" },
+  { src: "/gallery-settings.png", caption: "Settings — 5 themes, 5 languages, backup/restore, and equivalents shortcuts" },
+  { src: "/gallery-mobile.png", caption: "Mobile Access — View experiments from any phone on your local network" },
 ];
 
 export default function ImageCarousel() {
