@@ -90,28 +90,38 @@ export default function GalleryPage() {
 
 const items = [
   {
+    src: "/screenshot1.png",
+    caption: "Ketcher structure drawing with auto-calculated mass, volume, and equivalents across multiple reaction steps",
+    tag: "Multistep Synthesis",
+  },
+  {
     src: "/gallery-reaction.png",
-    caption: "Reaction scheme with structure drawing, auto-calculated equivalents, and step-by-step procedure",
-    tag: "Reaction Setup",
+    caption: "Auto-generated reaction scheme from your reagents, with step-by-step procedure recording below",
+    tag: "Reaction Scheme",
   },
   {
     src: "/gallery-database.png",
-    caption: "Chemical database with structure cards, tag filtering, and PubChem integration",
+    caption: "Browse your compound library with structure cards, tag filtering, and one-click PubChem import",
     tag: "Chemical Database",
   },
   {
+    src: "/screenshot2.png",
+    caption: "Publication-quality PDF with reaction schemes, reagent tables, procedures, and spectra data",
+    tag: "PDF Export",
+  },
+  {
     src: "/gallery-notebook.png",
-    caption: "Markdown notebook with live preview, experiment embeds, and Obsidian-compatible [[links]]",
+    caption: "Obsidian-compatible Markdown with live preview, [[experiment links]], and embedded data cards",
     tag: "Notebook",
   },
   {
     src: "/gallery-settings.png",
-    caption: "5 beautiful themes and 5 languages, with backup/restore and equivalents shortcuts",
-    tag: "Settings",
+    caption: "5 color themes and 5 languages, plus configurable equivalents shortcuts and one-click backup",
+    tag: "Themes & Languages",
   },
   {
     src: "/gallery-mobile.png",
-    caption: "Access experiments from any phone on your network — plus license activation and QR code",
+    caption: "Open experiments from any phone or tablet on your network, with QR code for instant connection",
     tag: "Mobile Access",
   },
 ];

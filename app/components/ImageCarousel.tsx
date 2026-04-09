@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 
 const slides = [
-  { src: "/gallery-reaction.png", caption: "Reaction Setup — Structure drawing, auto-calculated equivalents, and step-by-step procedure" },
-  { src: "/gallery-database.png", caption: "Chemical Database — Structure cards with tag filtering and PubChem integration" },
-  { src: "/gallery-notebook.png", caption: "Notebook — Markdown editing with live preview, experiment embeds, and [[links]]" },
-  { src: "/gallery-settings.png", caption: "Settings — 5 themes, 5 languages, backup/restore, and equivalents shortcuts" },
-  { src: "/gallery-mobile.png", caption: "Mobile Access — View experiments from any phone on your local network" },
+  { src: "/screenshot1.png", caption: "Multistep Synthesis — Ketcher structure drawing with auto-calculated mass, volume, and equivalents across multiple steps" },
+  { src: "/gallery-reaction.png", caption: "Reaction Scheme — Auto-generated scheme from your reagents, with step-by-step procedure recording" },
+  { src: "/gallery-database.png", caption: "Chemical Database — Browse your compound library with structure cards, tag filtering, and one-click PubChem import" },
+  { src: "/screenshot2.png", caption: "PDF Export — Publication-quality output with reaction schemes, reagent tables, procedures, and spectra" },
+  { src: "/gallery-notebook.png", caption: "Notebook — Obsidian-compatible Markdown with live preview, [[experiment links]], and embedded data cards" },
+  { src: "/gallery-settings.png", caption: "Themes & Languages — 5 color themes and 5 languages, plus configurable shortcuts and one-click backup" },
+  { src: "/gallery-mobile.png", caption: "Mobile Access — Open experiments from any phone or tablet on your network, with QR code for instant connection" },
 ];
 
 export default function ImageCarousel() {
