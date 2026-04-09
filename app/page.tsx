@@ -118,6 +118,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Contact & Bug Report ===== */}
+      <section className="contact-section">
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <p className="overline">Support</p>
+          <h2>We'd love to hear from you.</h2>
+          <p className="section-desc">Questions, feedback, or found a bug? Reach out anytime.</p>
+        </div>
+        <div className="contact-grid">
+          <div className="contact-card">
+            <div className="contact-icon">✉️</div>
+            <h3>Get in Touch</h3>
+            <p>Have a question or feature request? Send us an email and we'll get back to you.</p>
+            <a href="mailto:jjj3789tw@gmail.com" className="contact-btn">jjj3789tw@gmail.com</a>
+          </div>
+          <div className="contact-card">
+            <div className="contact-icon">🐛</div>
+            <h3>Report a Bug</h3>
+            <p>Found something broken? Open an issue on GitHub with steps to reproduce.</p>
+            <a href="https://github.com/Aslan0809610/synvala/issues" target="_blank" rel="noopener noreferrer" className="contact-btn">Open GitHub Issue</a>
+          </div>
+        </div>
+      </section>
+
       {/* ===== CTA (dark) ===== */}
       <section className="cta-dark">
         <h2>Start recording experiments today.</h2>

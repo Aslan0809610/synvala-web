@@ -30,6 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/pricing">Pricing</a>
             <a href="/download">Download</a>
             <a href="/activate">Activate License</a>
+            <a href="mailto:jjj3789tw@gmail.com">Contact</a>
+            <a href="https://github.com/Aslan0809610/synvala/issues" target="_blank" rel="noopener noreferrer">Report a Bug</a>
           </div>
           <p>&copy; {new Date().getFullYear()} Synvala. Built for organic chemists.</p>
         </footer>
