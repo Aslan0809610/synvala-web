@@ -38,7 +38,7 @@ export default function Pricing() {
             <div className="tier-badge">MOST POPULAR</div>
             <h3>Pro</h3>
             <div className="tier-price">$29<span>/yr</span></div>
-            <div className="tier-sub">or $3/month · $79 lifetime</div>
+            <div className="tier-sub">or $3/month</div>
             <ul>
               <li>Everything in Free, plus:</li>
               <li className="hl">Screening experiments</li>
@@ -52,7 +52,6 @@ export default function Pricing() {
             <div className="tier-actions">
               <a href="https://9077962358592.gumroad.com/l/ylkzia" className="tier-btn primary">Get Pro — $29/yr</a>
               <a href="https://9077962358592.gumroad.com/l/emgyg" className="tier-btn secondary">Monthly $3/mo</a>
-              <a href="https://9077962358592.gumroad.com/l/muguh" className="tier-btn secondary">Lifetime $79</a>
             </div>
           </div>
 
