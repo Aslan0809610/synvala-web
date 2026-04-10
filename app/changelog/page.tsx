@@ -30,6 +30,18 @@ export default function ChangelogPage() {
 
 const releases = [
   {
+    version: "v1.0.3",
+    date: "2026-04-10",
+    title: "License Compliance Fix",
+    tag: "patch",
+    changes: [
+      "Replaced jcampconverter dependency with the MIT-licensed v10.0.2 (was CC-BY-NC-SA-4.0)",
+      "Added bundled THIRD_PARTY_LICENSES.txt listing all dependencies",
+      "Added identifying User-Agent for PubChem API requests",
+      "All v1.0.0 – v1.0.2 builds have been removed; please use v1.0.3",
+    ],
+  },
+  {
     version: "v1.0.2",
     date: "2026-04-09",
     title: "SI Export System + Spectra Management",
