@@ -30,12 +30,12 @@ import { readFileSync } from "fs";
 
 // ─── Plan definitions ───────────────────────────────────────────────────────
 const PLANS = {
-  "pro-monthly":  { tier: "pro", days: 35 },
   "pro-annual":   { tier: "pro", days: 370 },
   "pro-lifetime": { tier: "pro", days: 36500 },
   "lab5":         { tier: "lab", seats: 5,  days: 370 },
   "lab10":        { tier: "lab", seats: 10, days: 370 },
   "lab20":        { tier: "lab", seats: 20, days: 370 },
+  "site":         { tier: "lab", seats: 9999, days: 370 },
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -93,12 +93,12 @@ Usage:
   node scripts/keygen.mjs --email <email> --plan <plan> [options]
 
 Plans:
-  pro-monthly   Pro, 35 days  (~1 month)
-  pro-annual    Pro, 370 days (~1 year)
-  pro-lifetime  Pro, 100 years
-  lab5          Lab 5 seats, 370 days
-  lab10         Lab 10 seats, 370 days
-  lab20         Lab 20 seats, 370 days
+  pro-annual    Pro, 370 days (~1 year)        — $39
+  pro-lifetime  Pro, 100 years                  — $129
+  lab5          Lab 5 seats, 370 days           — $199/yr
+  lab10         Lab 10 seats, 370 days          — $349/yr
+  lab20         Lab 20 seats, 370 days          — $549/yr
+  site          Site License, 9999 seats, 1 yr  — $1,500+/yr
 
 Options:
   --lab-name           Lab name (lab plans only, defaults to email domain)

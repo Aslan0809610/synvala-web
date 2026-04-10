@@ -43,12 +43,12 @@ try {
 
 // ─── Keygen logic ────────────────────────────────────────────────────────────
 const PLANS = {
-  "pro-monthly":  { tier: "pro", days: 35,    label: "Pro Monthly" },
-  "pro-annual":   { tier: "pro", days: 370,   label: "Pro Annual" },
-  "pro-lifetime": { tier: "pro", days: 36500, label: "Pro Lifetime" },
-  "lab5":         { tier: "lab", seats: 5,  days: 370, label: "Lab 5 Seats" },
-  "lab10":        { tier: "lab", seats: 10, days: 370, label: "Lab 10 Seats" },
-  "lab20":        { tier: "lab", seats: 20, days: 370, label: "Lab 20 Seats" },
+  "pro-annual":   { tier: "pro", days: 370,   label: "Pro Annual ($39)" },
+  "pro-lifetime": { tier: "pro", days: 36500, label: "Pro Lifetime ($129)" },
+  "lab5":         { tier: "lab", seats: 5,  days: 370, label: "Lab 5 Seats ($199/yr)" },
+  "lab10":        { tier: "lab", seats: 10, days: 370, label: "Lab 10 Seats ($349/yr)" },
+  "lab20":        { tier: "lab", seats: 20, days: 370, label: "Lab 20 Seats ($549/yr)" },
+  "site":         { tier: "lab", seats: 9999, days: 370, label: "Site License ($1500+/yr)" },
 };
 
 function randomId(len) {
@@ -66,7 +66,9 @@ function generate({ email, plan, labName, days: customDays, mode, activationWind
   const tier = planInfo.tier;
   const seats = planInfo.seats;
   const days = customDays ? parseInt(customDays) : planInfo.days;
-  const resolvedLab = tier === "lab" ? (labName?.trim() || email.split("@")[1]?.split(".")[0] || "Lab") : undefined;
+  // Both lab plans and site license use the lab tier with a lab_name field
+  const needsLabName = tier === "lab";
+  const resolvedLab = needsLabName ? (labName?.trim() || email.split("@")[1]?.split(".")[0] || "Lab") : undefined;
   const resolvedMode = mode === "online" ? "online" : "offline";
   const aw = activationWindow ? parseInt(activationWindow) : null;
   const now = Math.floor(Date.now() / 1000);
@@ -169,12 +171,12 @@ select option{background:#111;color:#fff}
 
         <label>Plan</label>
         <select id="plan">
-          <option value="pro-monthly">Pro Monthly  (~1 month)</option>
-          <option value="pro-annual" selected>Pro Annual   (~1 year)</option>
-          <option value="pro-lifetime">Pro Lifetime (100 years)</option>
-          <option value="lab5">Lab 5 Seats  (~1 year)</option>
-          <option value="lab10">Lab 10 Seats (~1 year)</option>
-          <option value="lab20">Lab 20 Seats (~1 year)</option>
+          <option value="pro-annual" selected>Pro Annual ($39/yr)</option>
+          <option value="pro-lifetime">Pro Lifetime ($129)</option>
+          <option value="lab5">Lab 5 Seats ($199/yr)</option>
+          <option value="lab10">Lab 10 Seats ($349/yr)</option>
+          <option value="lab20">Lab 20 Seats ($549/yr)</option>
+          <option value="site">Site License ($1500+/yr)</option>
         </select>
 
         <div id="labField" class="lab-field">
@@ -229,7 +231,9 @@ const history = [];
 let currentKey = "";
 
 document.getElementById("plan").addEventListener("change", e => {
-  document.getElementById("labField").className = e.target.value.startsWith("lab") ? "lab-field show" : "lab-field";
+  const v = e.target.value;
+  const showLab = v.startsWith("lab") || v === "site";
+  document.getElementById("labField").className = showLab ? "lab-field show" : "lab-field";
 });
 
 document.getElementById("form").addEventListener("submit", async e => {

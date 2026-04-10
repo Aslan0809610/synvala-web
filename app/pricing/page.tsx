@@ -12,6 +12,7 @@ export default function Pricing() {
           </p>
         </div>
 
+        {/* Individual tiers */}
         <div className="pricing-grid">
           {/* Free */}
           <div className="tier">
@@ -33,12 +34,12 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* Pro */}
+          {/* Pro Annual */}
           <div className="tier featured">
             <div className="tier-badge">MOST POPULAR</div>
             <h3>Pro</h3>
-            <div className="tier-price">$29<span>/yr</span></div>
-            <div className="tier-sub">or $3/month</div>
+            <div className="tier-price">$39<span>/yr</span></div>
+            <div className="tier-sub">Renews annually · cancel anytime</div>
             <ul>
               <li>Everything in Free, plus:</li>
               <li className="hl">Screening experiments</li>
@@ -54,20 +55,102 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* Lab */}
+          {/* Pro Lifetime */}
           <div className="tier">
-            <h3>Lab</h3>
-            <div className="tier-price">$99<span>/yr</span></div>
-            <div className="tier-sub">5 seats · 10 for $169 · 20 for $299</div>
+            <h3>Pro Lifetime</h3>
+            <div className="tier-price">$129</div>
+            <div className="tier-sub">One-time payment · forever yours</div>
             <ul>
-              <li>Everything in Pro, plus:</li>
-              <li className="hl">Multi-seat license</li>
-              <li className="hl">One key, entire lab</li>
-              <li>Lab name on license</li>
-              <li>Volume discount</li>
+              <li>All Pro features</li>
+              <li className="hl">Pay once, use forever</li>
+              <li className="hl">All future updates included</li>
+              <li>No subscription</li>
+              <li>Activate within 30 days</li>
             </ul>
             <div className="tier-actions">
               <button className="tier-btn secondary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Lab tiers */}
+        <div style={{ marginTop: 64, textAlign: "center", marginBottom: 32 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.5 }}>For Research Groups</h2>
+          <p style={{ color: "var(--text-muted)", fontSize: 15, marginTop: 6 }}>
+            One key, entire lab. Includes Pro features for every member.
+          </p>
+        </div>
+        <div className="pricing-grid">
+          <div className="tier">
+            <h3>Lab 5</h3>
+            <div className="tier-price">$199<span>/yr</span></div>
+            <div className="tier-sub">5 seats · $40/seat</div>
+            <ul>
+              <li>All Pro features × 5 users</li>
+              <li className="hl">One key, entire lab</li>
+              <li>Lab name on license</li>
+              <li>Annual renewal</li>
+            </ul>
+            <div className="tier-actions">
+              <button className="tier-btn secondary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
+            </div>
+          </div>
+
+          <div className="tier featured">
+            <div className="tier-badge">BEST VALUE</div>
+            <h3>Lab 10</h3>
+            <div className="tier-price">$349<span>/yr</span></div>
+            <div className="tier-sub">10 seats · $35/seat</div>
+            <ul>
+              <li>All Pro features × 10 users</li>
+              <li className="hl">One key, entire lab</li>
+              <li>Lab name on license</li>
+              <li>Annual renewal</li>
+            </ul>
+            <div className="tier-actions">
+              <button className="tier-btn primary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
+            </div>
+          </div>
+
+          <div className="tier">
+            <h3>Lab 20</h3>
+            <div className="tier-price">$549<span>/yr</span></div>
+            <div className="tier-sub">20 seats · $27/seat</div>
+            <ul>
+              <li>All Pro features × 20 users</li>
+              <li className="hl">One key, entire lab</li>
+              <li>Lab name on license</li>
+              <li>Annual renewal</li>
+            </ul>
+            <div className="tier-actions">
+              <button className="tier-btn secondary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Site License */}
+        <div className="site-license-section">
+          <div className="site-license-card">
+            <div className="site-license-content">
+              <p className="overline-mini">Enterprise</p>
+              <h3>Site License</h3>
+              <p className="site-license-desc">
+                Unlimited seats for an entire department, institution, or company.
+                Custom terms, priority support, and online verification with revocation control.
+              </p>
+              <ul className="site-license-features">
+                <li>✓ Unlimited users</li>
+                <li>✓ Online verification + revocation</li>
+                <li>✓ Custom branding & support</li>
+                <li>✓ Volume invoicing</li>
+              </ul>
+            </div>
+            <div className="site-license-cta">
+              <div className="site-license-price">$1,500<span>+ /yr</span></div>
+              <p className="site-license-contact">Contact for details</p>
+              <a href="mailto:hello@synvala.com?subject=Site%20License%20Inquiry" className="tier-btn primary">
+                Get in Touch
+              </a>
             </div>
           </div>
         </div>
@@ -99,9 +182,11 @@ export default function Pricing() {
 
 const faq = [
   { q: "Can I try Pro for free?", a: "The Free tier is fully functional for single-step synthesis. Upgrade when you need screening, multistep, substrate scope, or SI export." },
-  { q: "What happens when my license expires?", a: "Your data is always yours. Pro experiments become read-only — you can view everything but can't create new Pro experiments until you renew." },
+  { q: "Annual vs Lifetime?", a: "Annual ($39/yr) is best if you want the latest features and aren't sure if you'll use Synvala long-term. Lifetime ($129) pays for itself in just over 3 years and includes all future updates." },
+  { q: "What happens when my Pro license expires?", a: "Your data is always yours. Pro experiments become read-only — you can view everything but can't create new Pro experiments until you renew. Lifetime never expires." },
   { q: "Do I need internet?", a: "No. Synvala works 100% offline. Internet is only used for PubChem lookup, AI assistant, and update checks." },
-  { q: "Multiple computers?", a: "Pro is for one user. For a research group, choose Lab (5, 10, or 20 seats with a single key)." },
+  { q: "Multiple computers?", a: "Pro is for one user across their devices. For a research group, choose Lab (5, 10, or 20 seats with a single key)." },
   { q: "Where is my data?", a: "Locally on your computer in SQLite. No cloud, no account, no data ever leaves your machine." },
   { q: "How do I get my license key?", a: "After purchase, go to synvala.com/activate and enter your email. Your key is generated instantly." },
+  { q: "What's a Site License?", a: "Unlimited seats for an entire department, institution, or company — ideal for chemistry departments or pharma R&D teams. Contact us for a quote." },
 ];
