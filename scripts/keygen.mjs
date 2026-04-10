@@ -46,7 +46,7 @@ function randomId(len) {
   return result;
 }
 
-function generateLicenseKey(email, tier, seats, labName, durationDays, privateKeyPem) {
+function generateLicenseKey(email, tier, seats, labName, durationDays, privateKeyPem, mode, activationWindowDays) {
   const privateKey = createPrivateKey(privateKeyPem);
   const now = Math.floor(Date.now() / 1000);
 
@@ -54,11 +54,13 @@ function generateLicenseKey(email, tier, seats, labName, durationDays, privateKe
     uid: `${tier}_${randomId(12)}`,
     email,
     tier,
+    mode: mode || "offline",
     ...(seats !== undefined && { seats }),
     ...(labName && { lab_name: labName }),
-    exp: now + durationDays * 86400,
     iat: now,
-    version: 1,
+    exp: now + durationDays * 86400,
+    ...(activationWindowDays && { activation_deadline: now + activationWindowDays * 86400 }),
+    version: 2,
   };
 
   const jsonStr = JSON.stringify(payload);
@@ -99,9 +101,11 @@ Plans:
   lab20         Lab 20 seats, 370 days
 
 Options:
-  --lab-name    Lab name (lab plans only, defaults to email domain)
-  --days        Override duration in days
-  --key-file    Path to private key PEM file
+  --lab-name           Lab name (lab plans only, defaults to email domain)
+  --days               Override duration in days
+  --mode               offline (default) or online
+  --activation-window  Days within which the key must be activated
+  --key-file           Path to private key PEM file
 `);
   process.exit(0);
 }
@@ -140,11 +144,13 @@ const days     = args.days ? parseInt(args.days) : plan.days;
 const labName  = tier === "lab"
   ? (args["lab-name"] || email.split("@")[1]?.split(".")[0] || "Lab")
   : undefined;
+const mode     = args.mode === "online" ? "online" : "offline";
+const activationWindow = args["activation-window"] ? parseInt(args["activation-window"]) : null;
 
 // Generate
 let key;
 try {
-  key = generateLicenseKey(email, tier, seats, labName, days, privateKeyPem);
+  key = generateLicenseKey(email, tier, seats, labName, days, privateKeyPem, mode, activationWindow);
 } catch (e) {
   console.error("Error generating key:", e.message);
   process.exit(1);
@@ -154,12 +160,17 @@ try {
 const expDate = new Date(Date.now() + days * 86400 * 1000).toISOString().split("T")[0];
 
 console.log("\n" + "─".repeat(60));
-console.log(`  Email   : ${email}`);
-console.log(`  Plan    : ${args.plan}`);
-console.log(`  Tier    : ${tier}`);
-if (seats)   console.log(`  Seats   : ${seats}`);
-if (labName) console.log(`  Lab     : ${labName}`);
-console.log(`  Expires : ${expDate} (${days} days)`);
+console.log(`  Email      : ${email}`);
+console.log(`  Plan       : ${args.plan}`);
+console.log(`  Tier       : ${tier}`);
+console.log(`  Mode       : ${mode}`);
+if (seats)   console.log(`  Seats      : ${seats}`);
+if (labName) console.log(`  Lab        : ${labName}`);
+console.log(`  Expires    : ${expDate} (${days} days)`);
+if (activationWindow) {
+  const deadline = new Date(Date.now() + activationWindow * 86400 * 1000).toISOString().split("T")[0];
+  console.log(`  Activate by: ${deadline} (${activationWindow} days)`);
+}
 console.log("─".repeat(60));
 console.log("\nLicense Key:\n");
 console.log(key);

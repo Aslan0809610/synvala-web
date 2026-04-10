@@ -44,6 +44,9 @@ export default function Activate() {
         <p style={{ color: "var(--text-muted)", fontSize: 15, marginTop: 8 }}>
           Enter the email you used on Gumroad.
         </p>
+        <p style={{ color: "var(--text-dim)", fontSize: 12, marginTop: 6 }}>
+          Note: new purchases are temporarily paused while we refine the licensing system. Existing buyers can still retrieve their keys here.
+        </p>
       </div>
 
       {!result ? (

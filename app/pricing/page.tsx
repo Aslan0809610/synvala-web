@@ -50,8 +50,7 @@ export default function Pricing() {
               <li className="hl">Mobile server</li>
             </ul>
             <div className="tier-actions">
-              <a href="https://9077962358592.gumroad.com/l/ylkzia" className="tier-btn primary">Get Pro — $29/yr</a>
-              <a href="https://9077962358592.gumroad.com/l/emgyg" className="tier-btn secondary">Monthly $3/mo</a>
+              <button className="tier-btn primary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
             </div>
           </div>
 
@@ -68,9 +67,7 @@ export default function Pricing() {
               <li>Volume discount</li>
             </ul>
             <div className="tier-actions">
-              <a href="https://9077962358592.gumroad.com/l/pajmvg" className="tier-btn secondary">Lab 5 — $99/yr</a>
-              <a href="https://9077962358592.gumroad.com/l/tqqemu" className="tier-btn secondary">Lab 10 — $169/yr</a>
-              <a href="https://9077962358592.gumroad.com/l/ugubfs" className="tier-btn secondary">Lab 20 — $299/yr</a>
+              <button className="tier-btn secondary" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}>Coming Soon</button>
             </div>
           </div>
         </div>
@@ -90,11 +87,11 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* Activate CTA */}
+      {/* Coming soon notice */}
       <section className="cta-dark">
-        <h2>Already purchased?</h2>
-        <p>Get your license key instantly.</p>
-        <a href="/activate" className="btn-hero primary">Activate License</a>
+        <h2>Pro / Lab purchasing temporarily paused</h2>
+        <p>We're refining the licensing system. Free tier remains fully available.</p>
+        <a href="/download" className="btn-hero primary">Download Free</a>
       </section>
     </main>
   );

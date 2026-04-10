@@ -58,7 +58,7 @@ function randomId(len) {
   return r;
 }
 
-function generate({ email, plan, labName, days: customDays }) {
+function generate({ email, plan, labName, days: customDays, mode, activationWindow }) {
   const planInfo = PLANS[plan];
   if (!planInfo) throw new Error(`Unknown plan: ${plan}`);
   if (!email?.trim()) throw new Error("Email required");
@@ -67,17 +67,21 @@ function generate({ email, plan, labName, days: customDays }) {
   const seats = planInfo.seats;
   const days = customDays ? parseInt(customDays) : planInfo.days;
   const resolvedLab = tier === "lab" ? (labName?.trim() || email.split("@")[1]?.split(".")[0] || "Lab") : undefined;
+  const resolvedMode = mode === "online" ? "online" : "offline";
+  const aw = activationWindow ? parseInt(activationWindow) : null;
   const now = Math.floor(Date.now() / 1000);
 
   const payload = {
     uid: `${tier}_${randomId(12)}`,
     email: email.trim().toLowerCase(),
     tier,
+    mode: resolvedMode,
     ...(seats !== undefined && { seats }),
     ...(resolvedLab && { lab_name: resolvedLab }),
-    exp: now + days * 86400,
     iat: now,
-    version: 1,
+    exp: now + days * 86400,
+    ...(aw && { activation_deadline: now + aw * 86400 }),
+    version: 2,
   };
 
   const jsonStr = JSON.stringify(payload);
@@ -85,8 +89,20 @@ function generate({ email, plan, labName, days: customDays }) {
   const signature = sign(null, Buffer.from(jsonStr, "utf-8"), privateKey);
   const licenseKey = Buffer.from(jsonStr + "." + signature.toString("base64"), "utf-8").toString("base64");
   const expDate = new Date((now + days * 86400) * 1000).toISOString().split("T")[0];
+  const activateBy = aw ? new Date((now + aw * 86400) * 1000).toISOString().split("T")[0] : null;
 
-  return { licenseKey, email: payload.email, tier, plan: planInfo.label, seats: seats ?? null, labName: resolvedLab ?? null, expires: expDate, days };
+  return {
+    licenseKey,
+    email: payload.email,
+    tier,
+    mode: resolvedMode,
+    plan: planInfo.label,
+    seats: seats ?? null,
+    labName: resolvedLab ?? null,
+    expires: expDate,
+    days,
+    activateBy,
+  };
 }
 
 // ─── HTML UI ─────────────────────────────────────────────────────────────────
@@ -166,6 +182,15 @@ select option{background:#111;color:#fff}
           <input type="text" id="labName" placeholder="Wang Lab">
         </div>
 
+        <label>Verification Mode</label>
+        <select id="mode">
+          <option value="offline" selected>Offline (no server check)</option>
+          <option value="online">Online (server verification + revocable)</option>
+        </select>
+
+        <label>Activation Window <span style="color:#6e6e73">(days, optional — must activate within)</span></label>
+        <input type="number" id="activationWindow" placeholder="e.g. 30">
+
         <label>Custom Duration <span style="color:#6e6e73">(days, optional)</span></label>
         <input type="number" id="days" placeholder="leave blank for default">
 
@@ -223,6 +248,8 @@ document.getElementById("form").addEventListener("submit", async e => {
         plan: document.getElementById("plan").value,
         labName: document.getElementById("labName").value || undefined,
         days: document.getElementById("days").value || undefined,
+        mode: document.getElementById("mode").value,
+        activationWindow: document.getElementById("activationWindow").value || undefined,
       })
     });
     const data = await res.json();
@@ -245,10 +272,12 @@ function showResult(data) {
   const row = (l, v) => '<div class="info-row"><span class="info-label">' + l + '</span><span class="info-value">' + v + '</span></div>';
   html += row("Email", data.email);
   html += row("Plan", data.plan);
+  html += row("Mode", data.mode || "offline");
   if (data.seats) html += row("Seats", data.seats);
   if (data.labName) html += row("Lab", data.labName);
   html += row("Expires", data.expires);
   html += row("Days", data.days);
+  if (data.activateBy) html += row("Activate by", data.activateBy);
   document.getElementById("resultInfo").innerHTML = html;
   document.getElementById("resultKey").textContent = data.licenseKey;
   document.getElementById("copyBtn").className = "btn-sm btn-copy";
@@ -273,6 +302,8 @@ function resetForm() {
   document.getElementById("email").value = "";
   document.getElementById("labName").value = "";
   document.getElementById("days").value = "";
+  document.getElementById("activationWindow").value = "";
+  document.getElementById("mode").value = "offline";
   document.getElementById("resultEmpty").style.display = "block";
   document.getElementById("resultContent").style.display = "none";
   document.getElementById("email").focus();

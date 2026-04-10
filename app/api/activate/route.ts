@@ -48,15 +48,18 @@ function generateLicenseKey(
   const privateKey = createPrivateKey(privateKeyPem);
   const now = Math.floor(Date.now() / 1000);
 
+  // Auto-activate flow keys default to offline mode for now.
+  // (Online mode keys are issued via the admin keygen UI for high-risk plans.)
   const payload: Record<string, any> = {
     uid: `${tier}_${randomId(12)}`,
     email,
     tier,
+    mode: "offline",
     ...(seats !== undefined && { seats }),
     ...(labName && { lab_name: labName }),
-    exp: now + durationDays * 86400,
     iat: now,
-    version: 1,
+    exp: now + durationDays * 86400,
+    version: 2,
   };
 
   const jsonStr = JSON.stringify(payload);
