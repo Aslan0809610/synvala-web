@@ -41,7 +41,7 @@ export default function RoadmapPage() {
           <h3>Have a feature request?</h3>
           <p>We'd love to hear what you need. Open an issue on GitHub or send us an email.</p>
           <div className="roadmap-cta-actions">
-            <a href="https://github.com/Aslan0809610/synvala/issues" target="_blank" rel="noopener noreferrer" className="contact-btn">Open GitHub Issue</a>
+            <a href="https://github.com/Aslan0809610/synvala-web/issues" target="_blank" rel="noopener noreferrer" className="contact-btn">Open GitHub Issue</a>
             <a href="mailto:synvalav0@gmail.com" className="contact-btn" style={{ background: "var(--bg-muted)", color: "var(--text)" }}>Send Email</a>
           </div>
         </div>

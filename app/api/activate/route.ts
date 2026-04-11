@@ -16,12 +16,11 @@ import { createPrivateKey, sign } from "crypto";
 
 // Product permalink → tier/seats/duration
 const PRODUCT_MAP: Record<string, { tier: string; seats?: number; days: number }> = {
-  "emgyg":  { tier: "pro", days: 35 },
-  "ylkzia": { tier: "pro", days: 370 },
-  "muguh":  { tier: "pro", days: 36500 },
-  "pajmvg": { tier: "lab", seats: 5, days: 370 },
-  "tqqemu": { tier: "lab", seats: 10, days: 370 },
-  "ugubfs": { tier: "lab", seats: 20, days: 370 },
+  "ylkzia": { tier: "pro", days: 370 },           // Pro Annual ($39)
+  "muguh":  { tier: "pro", days: 36500 },         // Pro Lifetime ($129)
+  "pajmvg": { tier: "lab", seats: 5, days: 370 }, // Lab 5 ($199/yr)
+  "tqqemu": { tier: "lab", seats: 10, days: 370 },// Lab 10 ($349/yr)
+  "ugubfs": { tier: "lab", seats: 20, days: 370 },// Lab 20 ($549/yr)
 };
 
 const VALID_PERMALINKS = new Set(Object.keys(PRODUCT_MAP));

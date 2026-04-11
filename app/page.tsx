@@ -158,7 +158,7 @@ export default function Home() {
             <div className="contact-icon">🐛</div>
             <h3>Report a Bug</h3>
             <p>Found something broken? Open an issue on GitHub with steps to reproduce.</p>
-            <a href="https://github.com/Aslan0809610/synvala/issues" target="_blank" rel="noopener noreferrer" className="contact-btn">Open GitHub Issue</a>
+            <a href="https://github.com/Aslan0809610/synvala-web/issues" target="_blank" rel="noopener noreferrer" className="contact-btn">Open GitHub Issue</a>
           </div>
         </div>
       </section>
