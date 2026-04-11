@@ -30,6 +30,18 @@ export default function ChangelogPage() {
 
 const releases = [
   {
+    version: "v1.0.4",
+    date: "2026-04-11",
+    title: "Critical Fix: Chemical Data Loss",
+    tag: "patch",
+    changes: [
+      "Fixed reaction entries losing their chemical after switching experiments too quickly",
+      "Root cause: chemical database id was not assigned before the entry was saved",
+      "All chemical save paths (PubChem, Ketcher draw) now await the save properly",
+      "Applies to Synthesis, Screening setup, and Substrate scope editors",
+    ],
+  },
+  {
     version: "v1.0.3",
     date: "2026-04-10",
     title: "License Compliance Fix",
