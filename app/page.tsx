@@ -152,7 +152,7 @@ export default function Home() {
             <div className="contact-icon">✉️</div>
             <h3>Get in Touch</h3>
             <p>Have a question or feature request? Send us an email and we'll get back to you.</p>
-            <a href="mailto:jjj3789tw@gmail.com" className="contact-btn">jjj3789tw@gmail.com</a>
+            <a href="mailto:synvalav0@gmail.com" className="contact-btn">synvalav0@gmail.com</a>
           </div>
           <div className="contact-card">
             <div className="contact-icon">🐛</div>

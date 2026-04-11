@@ -148,7 +148,7 @@ export default function Pricing() {
             <div className="site-license-cta">
               <div className="site-license-price">$1,500<span>+ /yr</span></div>
               <p className="site-license-contact">Contact for details</p>
-              <a href="mailto:hello@synvala.com?subject=Site%20License%20Inquiry" className="tier-btn primary">
+              <a href="mailto:synvalav0@gmail.com?subject=Site%20License%20Inquiry" className="tier-btn primary">
                 Get in Touch
               </a>
             </div>
